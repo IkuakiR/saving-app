@@ -2,29 +2,47 @@
     max-width: 402px;
     height: 100vh;
     color: #333;
-    background-color: #fff;
     padding: 30px;
+    padding-top: 80px;
+    background-color: #f1f1f1;
+    display: flex;
+    flex-direction: column;
+    padding-top: 120px;
+    box-sizing: border-box;
+}
 
-    h1 {
-        text-align: center;
-        font-size: 2rem;
-        font-weight: normal;
-    }
+
+.roomList {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 80px;
 }
 
 .roomCard {
-    border: #333 2px solid;
+    // border: #333 2px solid;
     width: 100%;
+    height: 90px;
     margin-bottom: 20px;
     border-radius: 10px;
-    padding: 10px;
+    background-color: #fff;
 
-    h2 {
+    .roomName {
+        width: 100%;
+        height: 33px;
         font-size: 1.125rem;
+        background-color: #ff7b00;
+        border-radius: 10px 10px 0 0;
     }
 
     .description {
         display: flex;
         gap: 5px;
     }
+}
+
+.navbar {
+    width: 100%;
+    height: 80px;
+    background: #ff7b00;
+    border-radius: 20px 20px 0 0;
 }

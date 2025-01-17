@@ -5,9 +5,9 @@ import styles from '@/styles/savingPage/page.module.scss';
 import { useState } from "react";
 import Link from "next/link";
 import Image from 'next/image';
+import Navbar from './components/navbar';
 import { db } from '../../Firebase/firebase';
 import { collection, addDoc } from 'firebase/firestore';
-// import Image from 'next/image';
 
 export default function Home() {
   const [displayValue, setDisplayValue] = useState("");
@@ -37,7 +37,7 @@ export default function Home() {
     <>
       <div className={styles.savingPageContainer}>
         <div className={styles.mainContainer}>
-          <Image src={'/images/wallet.png'} alt="Wallet" width={50} height={50} className={styles.walletImg} />
+          <Image src={'/images/wallet.svg'} alt="Wallet" width={50} height={50} className={styles.walletImg} />
           <div className={styles.numHolder}>{displayValue}</div>
           <button className={styles.savingButton} onClick={handleSave}>
             <Link href={`/chooseRoom?amount=${displayValue}`}>貯金する</Link>
@@ -67,6 +67,7 @@ export default function Home() {
             </tr>
           </tbody>
         </table>
+        <Navbar></Navbar>
       </div>
     </>
   );

@@ -14,6 +14,7 @@
 .roomCard {
   border: #333 2px solid;
   width: 100%;
+  height: 90px;
   margin-bottom: 20px;
   border-radius: 10px;
   padding: 10px;

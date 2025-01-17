@@ -4,6 +4,7 @@ import React from "react";
 import styles from '@/styles/chooseRoom/page.module.scss';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useSaving } from '../contexts/SavingContext';
+import Navbar from "../components/navbar";
 
 // import { useState } from "react";
 
@@ -69,6 +70,7 @@ export default function ChooseRoom() {
                     </div>
                 </div>
             </div>
+            <Navbar></Navbar>
         </>
     );
 }
