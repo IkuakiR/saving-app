@@ -3,21 +3,21 @@
 import React from "react";
 import Link from "next/link";
 import styles from "@/styles/appLogin/login/page.module.scss";
-import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+// import { initializeApp } from "firebase/app";
+// import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
-const firebaseConfig = {
-  apiKey: "",
-  authDomain: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: "",
-};
+// const firebaseConfig = {
+//   apiKey: "",
+//   authDomain: "",
+//   projectId: "",
+//   storageBucket: "",
+//   messagingSenderId: "",
+//   appId: "",
+// };
 
 // Firebase初期化
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+// const app = initializeApp(firebaseConfig);
+// const auth = getAuth(app);
 
 // DOM要素の取得
 document.addEventListener("DOMContentLoaded", () => {
@@ -40,24 +40,24 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // フォーム送信イベント
-  loginForm.addEventListener("submit", async (event: SubmitEvent) => {
-    event.preventDefault();
+  // loginForm.addEventListener("submit", async (event: SubmitEvent) => {
+  //   event.preventDefault();
 
-    const email = emailInput.value;
-    const password = passwordInput.value;
+  //   const email = emailInput.value;
+  //   const password = passwordInput.value;
 
-    try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      messageElement.textContent = `ログイン成功！ユーザーID: ${userCredential.user.uid}`;
-    } catch (error: any) {
-      console.error("ログインエラー:", error.message);
-      messageElement.textContent = `ログイン失敗: ${error.message}`;
-    }
-  });
+  //   try {
+  //     const userCredential = await signInWithEmailAndPassword(
+  //       auth,
+  //       email,
+  //       password
+  //     );
+  //     messageElement.textContent = `ログイン成功！ユーザーID: ${userCredential.user.uid}`;
+  //   } catch (error: any) {
+  //     console.error("ログインエラー:", error.message);
+  //     messageElement.textContent = `ログイン失敗: ${error.message}`;
+  //   }
+  // });
 });
 
 export default function Login() {
