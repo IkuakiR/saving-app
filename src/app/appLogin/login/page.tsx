@@ -53,10 +53,16 @@ document.addEventListener("DOMContentLoaded", () => {
         password
       );
       messageElement.textContent = `ログイン成功！ユーザーID: ${userCredential.user.uid}`;
-    } catch (error: any) {
-      console.error("ログインエラー:", error.message);
-      messageElement.textContent = `ログイン失敗: ${error.message}`;
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error("ログインエラー:", error.message);
+        messageElement.textContent = `ログイン失敗: ${error.message}`;
+      } else {
+        console.error("ログインエラー: 未知のエラー", error);
+        messageElement.textContent = "ログイン失敗: 未知のエラーが発生しました。";
+      }
     }
+
   });
 });
 
