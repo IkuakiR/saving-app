@@ -3,59 +3,6 @@
 import React from "react";
 import Link from "next/link";
 import styles from "@/styles/appLogin/login/page.module.scss";
-import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { firebaseConfig } from "../../../../Firebase/firebase";
-// Firebase初期化
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-// DOM要素の取得
-document.addEventListener("DOMContentLoaded", () => {
-  const loginForm = document.getElementById(
-    "loginForm"
-  ) as HTMLFormElement | null;
-  const emailInput = document.getElementById(
-    "email"
-  ) as HTMLInputElement | null;
-  const passwordInput = document.getElementById(
-    "password"
-  ) as HTMLInputElement | null;
-  const messageElement = document.getElementById(
-    "message"
-  ) as HTMLParagraphElement | null;
-
-  if (!loginForm || !emailInput || !passwordInput || !messageElement) {
-    console.error("必要なHTML要素が見つかりません");
-    return;
-  }
-
-  // フォーム送信イベント
-  loginForm.addEventListener("submit", async (event: SubmitEvent) => {
-    event.preventDefault();
-
-    const email = emailInput.value;
-    const password = passwordInput.value;
-
-    try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      messageElement.textContent = `ログイン成功！ユーザーID: ${userCredential.user.uid}`;
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        console.error("ログインエラー:", error.message);
-        messageElement.textContent = `ログイン失敗: ${error.message}`;
-      } else {
-        console.error("ログインエラー: 未知のエラー", error);
-        messageElement.textContent = "ログイン失敗: 未知のエラーが発生しました。";
-      }
-    }
-
-  });
-});
 
 export default function Login() {
   return (
