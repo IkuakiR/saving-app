@@ -5,16 +5,7 @@ import Link from "next/link";
 import styles from "@/styles/appLogin/login/page.module.scss";
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-
-const firebaseConfig = {
-  apiKey: "",
-  authDomain: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: "",
-};
-
+import { firebaseConfig } from "../../../../Firebase/firebase";
 // Firebase初期化
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);

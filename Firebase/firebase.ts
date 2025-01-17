@@ -2,7 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 
 // TODO: Replace the following with your app's Firebase project configuration
-const firebaseConfig = {
+export const firebaseConfig = {
     apiKey: "AIzaSyBq3mRfwuCLjHc6KF3lVveCTdHSGMM7iAU",
     authDomain: "saving-app-ea659.firebaseapp.com",
     projectId: "saving-app-ea659",
