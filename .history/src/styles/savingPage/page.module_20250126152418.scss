@@ -10,49 +10,45 @@
 }
 
 .mainContainer {
-    position: relative;
     width: 100%;
-    height: 450px;
     background-color: #f1f1f1;
     padding-top: 35%;
 }
 
 .walletImg {
-    position: absolute;
+    position: relative;
     display: block;
     width: 305px;
     height: 311px;
-    left: 50%;
-    transform: translate(-50%, -20%);
+    transform: translateY(-50px);
+    margin: 0 auto;
 }
 
 .numHolder {
     position: absolute;
     width: 200px;
     height: 50px;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%);
-    // border: #333 2px solid;
+    margin: 0 auto;
+    transform: translateY(-170px);
+    border: #333 2px solid;
     color: #fff;
     font-size: 2.5rem;
     text-align: center;
 }
 
 .savingButton {
-    position: absolute;
+    position: relative;
     display: block;
     width: 135px;
     height: 55px;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, 50%);
     border-radius: 15px;
     background-color: #fff;
     color: #ff7b00;
     text-align: center;
     font-size: 25px;
     justify-content: center;
+    margin: 0 auto;
+    transform: translateY(-150px);
     border: none;
 }
 
