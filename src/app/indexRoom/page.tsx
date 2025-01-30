@@ -45,10 +45,10 @@ export default function ChooseRoom() {
                 return;
             }
 
-            const roomDocRef = doc(db, "rooms", querySnapshot.docs[0].id); 
+            const roomDocRef = doc(db, "rooms", querySnapshot.docs[0].id);
 
             await updateDoc(roomDocRef, {
-                currentAmount: Number(amount), 
+                currentAmount: Number(amount),
             });
 
             setAmount(amount);
@@ -83,11 +83,7 @@ export default function ChooseRoom() {
                 <div className={styles.roomList}>
                     {rooms.map((room: Room, index: number) => (
                         <Link href={`/indexRoom/roomContent?roomName=${room.roomName}`} key={index}>
-                            <div
-                                className={styles.roomCard}
-                                key={index}
-                                onClick={() => handleChooseRoom(room.roomName)}
-                            >
+                            <div className={styles.roomCard}>
                                 <h2 className={styles.roomName}>{room.roomName}</h2>
                                 <div className={styles.description}>
                                     <p className={styles.category}>{categoryMapping[room.category]}</p>
