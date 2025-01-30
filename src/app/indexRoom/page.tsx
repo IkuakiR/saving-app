@@ -6,17 +6,17 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useSaving } from '../contexts/SavingContext';
 import Navbar from "../components/navbar";
 import Image from 'next/image';
-import { collection, getDocs, query, orderBy, DocumentData } from "firebase/firestore";
+import { collection, getDocs, query, orderBy, DocumentData, where, doc, updateDoc } from "firebase/firestore";
 import { db } from "@/app/Firebase/firebase";
 import { useEffect } from "react";
 import Link from "next/link";
 
-// import { useState } from "react";
 interface Room {
     roomName: string;
     category: string;
     numberOfPeople: number;
     showPrice: number;
+    currentAmount?: number;
 }
 
 export default function ChooseRoom() {
@@ -32,17 +32,37 @@ export default function ChooseRoom() {
         life: "生活",
     };
 
-    const handleChooseRoom = (roomName: string) => {
+    const handleChooseRoom = async (roomName: string) => {
         const amount = searchParams.get('amount') || '';
-        setAmount(amount);
-        setRoomName(roomName);
-        router.push('chooseRoom/savingDone');
+
+        try {
+            const roomQuery = query(collection(db, "rooms"), where("roomName", "==", roomName));
+            const querySnapshot = await getDocs(roomQuery);
+
+            if (querySnapshot.empty) {
+                console.error("Room not found");
+                alert("部屋が見つかりませんでした");
+                return;
+            }
+
+            const roomDocRef = doc(db, "rooms", querySnapshot.docs[0].id); 
+
+            await updateDoc(roomDocRef, {
+                currentAmount: Number(amount), 
+            });
+
+            setAmount(amount);
+            setRoomName(roomName);
+
+            router.push('chooseRoom/savingDone');
+        } catch (error) {
+            console.error("Error updating currentAmount:", error);
+        }
     };
 
     useEffect(() => {
         const fetchRooms = async () => {
             try {
-                // コレクションをクエリで取得
                 const roomsQuery = query(collection(db, "rooms"), orderBy("createdAt", "desc"));
                 const querySnapshot = await getDocs(roomsQuery);
                 const roomsData = querySnapshot.docs.map(
@@ -61,7 +81,6 @@ export default function ChooseRoom() {
         <>
             <div className={styles.chooseRoomContainer}>
                 <div className={styles.roomList}>
-                    {/* 実際のデータベースから取得するように変更 */}
                     {rooms.map((room: Room, index: number) => (
                         <Link href={`/indexRoom/roomContent?roomName=${room.roomName}`} key={index}>
                             <div
@@ -76,7 +95,7 @@ export default function ChooseRoom() {
                                     <p className={styles.members}>{room.numberOfPeople}人</p>
                                 </div>
                                 <div className={styles.price}>
-                                    <p>0円</p>
+                                    <p className={styles.currentAmount}>{room.currentAmount ? `${room.currentAmount.toLocaleString()}円` : "未設定"}</p>
                                     <p>/</p>
                                     <p>{room.showPrice === "show" ? `${room.amountMoney?.toLocaleString()}円` : "非公開"}</p>
                                 </div>
