@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { db } from "@/app/Firebase/firebase"; // Import Firestore instance
 import { collection, addDoc } from "firebase/firestore";
 import styles from '@/styles/createRoom/page.module.scss';
+import Link from "next/link";
 
 export default function CreateRoom() {
   const [roomName, setRoomName] = useState("");
@@ -39,6 +40,7 @@ export default function CreateRoom() {
       setShowPrice("show");
       setCategory("trip");
       setNumberOfPeople("1");
+
     } catch (error) {
       console.error("Error adding room:", error);
       alert("エラーが発生しました");
@@ -48,7 +50,7 @@ export default function CreateRoom() {
   return (
     <div className={styles.createRoomContainer}>
       <div className={styles.top}>
-        <div className={styles.backButton}></div>
+        <Link href={'/indexRoom/'}><div className={styles.backButton}></div></Link>
         <h1 className={styles.title}>グループ作成</h1>
       </div>
 
@@ -71,32 +73,35 @@ export default function CreateRoom() {
             <input
               type="number"
               name="price"
+              placeholder="0"
+              className={styles.amountForm}
               value={amountMoney}
               onChange={(e) => setAmountMoney(Number(e.target.value))}
             />
           </p>
         </div>
 
-        <div className={styles.choseShowPrice}>
+        <div className={`${styles.choseShowPrice} ${styles.setOption}`}>
           <h2>目標金額公開</h2>
-          <select name="showPrice" value={showPrice} onChange={(e) => setShowPrice(e.target.value)}>
+          <select name="showPrice" value={showPrice} className={styles.selectBox} onChange={(e) => setShowPrice(e.target.value)}>
             <option value="show">公開する</option>
             <option value="hide">公開しない</option>
           </select>
         </div>
 
-        <div className={styles.choseCategory}>
+        <div className={`${styles.choseCategory} ${styles.setOption}`}>
           <h2>分野を選ぶ</h2>
-          <select name="category" value={category} onChange={(e) => setCategory(e.target.value)}>
+          <select name="category" value={category} className={styles.selectBox} onChange={(e) => setCategory(e.target.value)}>
             <option value="trip">旅行</option>
             <option value="hobby">趣味</option>
             <option value="shopping">買い物</option>
+            <option value="life">生活</option>
           </select>
         </div>
 
-        <div className={styles.addMembers}>
+        <div className={`${styles.addMembers} ${styles.setOption}`}>
           <h2>人数制限</h2>
-          <select name="numberOfPeople" value={numberOfPeople} onChange={(e) => setNumberOfPeople(e.target.value)}>
+          <select name="numberOfPeople" value={numberOfPeople} className={styles.selectBox} onChange={(e) => setNumberOfPeople(e.target.value)}>
             <option value="1">1人</option>
             <option value="2">2人</option>
             <option value="3">3人</option>
@@ -107,7 +112,7 @@ export default function CreateRoom() {
         <div className={styles.confirmBtn}>
           <button type="submit" className={styles.done}>作成する</button>
         </div>
-      </form>
-    </div>
+      </form >
+    </div >
   );
 }

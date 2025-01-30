@@ -9,6 +9,7 @@ import Image from 'next/image';
 import { collection, getDocs, query, orderBy, DocumentData } from "firebase/firestore";
 import { db } from "@/app/Firebase/firebase";
 import { useEffect } from "react";
+import Link from "next/link";
 
 // import { useState } from "react";
 interface Room {
@@ -62,30 +63,32 @@ export default function ChooseRoom() {
                 <div className={styles.roomList}>
                     {/* 実際のデータベースから取得するように変更 */}
                     {rooms.map((room: Room, index: number) => (
-                        <div
-                            className={styles.roomCard}
-                            key={index}
-                            onClick={() => handleChooseRoom(room.roomName)}
-                        >
-                            <h2 className={styles.roomName}>{room.roomName}</h2>
-                            <div className={styles.description}>
-                                <p className={styles.category}>{categoryMapping[room.category]}</p>
-                                <p>/</p>
-                                <p className={styles.members}>{room.numberOfPeople}人</p>
+                        <Link href={`/indexRoom/roomContent?roomName=${room.roomName}`} key={index}>
+                            <div
+                                className={styles.roomCard}
+                                key={index}
+                                onClick={() => handleChooseRoom(room.roomName)}
+                            >
+                                <h2 className={styles.roomName}>{room.roomName}</h2>
+                                <div className={styles.description}>
+                                    <p className={styles.category}>{categoryMapping[room.category]}</p>
+                                    <p>/</p>
+                                    <p className={styles.members}>{room.numberOfPeople}人</p>
+                                </div>
+                                <div className={styles.price}>
+                                    <p>0円</p>
+                                    <p>/</p>
+                                    <p>{room.showPrice === "show" ? `${room.amountMoney?.toLocaleString()}円` : "非公開"}</p>
+                                </div>
+                                <Image
+                                    src={"/img/koreaRoomImg.svg"}
+                                    alt="Room Image"
+                                    width={150}
+                                    height={75}
+                                    className={styles.roomImg}
+                                />
                             </div>
-                            <div className={styles.price}>
-                                <p>0円</p>
-                                <p>/</p>
-                                <p>{room.showPrice === "show" ? `${room.amountMoney?.toLocaleString()}円` : "非公開"}</p>
-                            </div>
-                            <Image
-                                src={"/img/koreaRoomImg.svg"}
-                                alt="Room Image"
-                                width={150}
-                                height={75}
-                                className={styles.roomImg}
-                            />
-                        </div>
+                        </Link>
                     ))}
                     <div className={styles.roomCard} onClick={() => handleChooseRoom("インドネシア旅行")}>
                         <h2 className={styles.roomName}>インドネシア旅行</h2>
@@ -157,9 +160,14 @@ export default function ChooseRoom() {
                         </div>
                         <Image src={'/img/idolRoomImg.svg'} alt="Indonesia" width={150} height={75} className={styles.roomImg} />
                     </div>
+                </div>
+                <div className={styles.navContainer}>
+                    <div className={styles.navbar}><Navbar></Navbar></div>
+                    <Link href={'/createRoom'}>
+                        <Image src={'/img/addRoomBtn.svg'} alt="AddRoomButton" width={50} height={50} className={styles.addRoomBtn} />
+                    </Link>
 
                 </div>
-                <div className={styles.navbar}><Navbar></Navbar></div>
             </div>
         </>
     );

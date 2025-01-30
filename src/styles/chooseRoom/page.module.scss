@@ -3,11 +3,10 @@
     height: 100vh;
     color: #333;
     padding: 30px;
-    padding-top: 80px;
     background-color: #f1f1f1;
     display: flex;
     flex-direction: column;
-    padding-top: 120px;
+    padding-top: 80px;
     box-sizing: border-box;
 }
 
@@ -58,6 +57,18 @@
         transform: translateY(-50%);
         border-radius: 10px;
     }
+}
+
+.navContainer {
+    position: relative;
+}
+
+.addRoomBtn {
+    position: absolute;
+    left: 85%;
+    bottom: 50%;
+    transform: translateY(-200%);
+    z-index: 100;
 }
 
 .navbar {

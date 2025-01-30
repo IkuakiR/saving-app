@@ -1,0 +1,38 @@
+.savingDoneContainer {
+    max-width: 402px;
+    height: 100vh;
+    color: #333;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    box-sizing: border-box;
+
+    .mainContainer {
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+        padding-top: 35vh;
+
+        .roomName {
+            font-size: 1.875rem;
+            margin-bottom: 8px;
+        }
+
+        .price {
+            margin-bottom: 8px;
+            font-size: 2.5rem;
+        }
+
+        .chargeDone {
+            .chargeDoneBtn {
+                width: 200px;
+                height: 50px;
+                font-size: 1.25rem;
+                border: none;
+                border-radius: 15px;
+                background-color: #ff7b00;
+            }
+        }
+    }
+}

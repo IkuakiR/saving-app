@@ -11,7 +11,7 @@ export default function Navbar() {
       <nav className={styles.navbar}>
         <ul className={styles.navList}>
           <li className={styles.navItem}>
-            <Link href="#">
+            <Link href="/indexRoom/">
               <Image
                 src="/img/group.svg"
                 alt="group icon"
