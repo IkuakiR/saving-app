@@ -6,8 +6,8 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from 'next/image';
 import Navbar from './components/navbar';
-import { db } from '../../Firebase/firebase';
-import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../app/Firebase/firebase';
+import { doc, setDoc } from 'firebase/firestore';
 
 export default function Home() {
   const [displayValue, setDisplayValue] = useState("");
@@ -20,14 +20,23 @@ export default function Home() {
     }
   };
 
+  // データを firebase に保存する
   const handleSave = async () => {
+    if (!displayValue.length) {
+      alert("金額を入力してください");
+      return;
+    }
+
     try {
-      const docRef = await addDoc(collection(db, "savings"), {
+      const docRef = doc(db, "savings", displayValue);
+
+      await setDoc(docRef, {
         amount: Number(displayValue),
         createdAt: new Date(),
         roomName: "", // roomNameは後で更新
       });
       console.log("Document written with ID: ", docRef.id);
+      alert("貯金しました");
     } catch (e) {
       console.error("Error adding document: ", e);
     }
