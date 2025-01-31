@@ -45,10 +45,10 @@ export default function ChooseRoom() {
                 return;
             }
 
-            const roomDocRef = doc(db, "rooms", querySnapshot.docs[0].id); 
+            const roomDocRef = doc(db, "rooms", querySnapshot.docs[0].id);
 
             await updateDoc(roomDocRef, {
-                currentAmount: Number(amount), 
+                currentAmount: Number(amount),
             });
 
             setAmount(amount);
@@ -95,7 +95,7 @@ export default function ChooseRoom() {
                                 <p className={styles.members}>{room.numberOfPeople}人</p>
                             </div>
                             <div className={styles.price}>
-                                <p className={styles.currentAmount}>{room.currentAmount ? `${room.currentAmount.toLocaleString()}円` : "未設定"}</p>
+                                <p className={styles.currentAmount}>{room.currentAmount ? `${room.currentAmount.toLocaleString()}円` : "0円"}</p>
                                 <p>/</p>
                                 <p>{room.showPrice === "show" ? `${room.amountMoney?.toLocaleString()}円` : "非公開"}</p>
                             </div>
@@ -121,20 +121,6 @@ export default function ChooseRoom() {
                             <p>50,000円</p>
                         </div>
                         <Image src={'/img/indRoomImg.svg'} alt="Indonesia" width={150} height={75} className={styles.roomImg} />
-                    </div>
-                    <div className={styles.roomCard} onClick={() => handleChooseRoom("節約")}>
-                        <h2 className={styles.roomName}>節約</h2>
-                        <div className={styles.description}>
-                            <p className={styles.category}>生活</p>
-                            <p>/</p>
-                            <p className={styles.members}>5人</p>
-                        </div>
-                        <div className={styles.price}>
-                            <p>15,000円</p>
-                            <p>/</p>
-                            <p>50,000円</p>
-                        </div>
-                        <Image src={'/img/pigRoomImg.svg'} alt="Indonesia" width={150} height={75} className={styles.roomImg} />
                     </div>
                     <div className={styles.roomCard} onClick={() => handleChooseRoom("ベンツ買おう")}>
                         <h2 className={styles.roomName}>ベンツ買おう</h2>
