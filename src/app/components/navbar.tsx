@@ -31,7 +31,7 @@ export default function Navbar() {
             </Link>
           </li>
           <li className={styles.navItem}>
-            <Link href="#">
+            <Link href="/saveCalendar/">
               <Image
                 src="/img/calendar.svg"
                 alt="group icon"

@@ -7,7 +7,7 @@ import { useSaving } from '../contexts/SavingContext';
 import Navbar from "../components/navbar";
 import Image from 'next/image';
 import { collection, getDocs, query, orderBy, DocumentData, where } from "firebase/firestore";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc, increment } from "firebase/firestore";
 import { db } from "@/app/Firebase/firebase";
 import { useEffect } from "react";
 
@@ -48,7 +48,7 @@ export default function ChooseRoom() {
             const roomDocRef = doc(db, "rooms", querySnapshot.docs[0].id);
 
             await updateDoc(roomDocRef, {
-                currentAmount: Number(amount),
+                currentAmount: increment(Number(amount)),
             });
 
             setAmount(amount);
