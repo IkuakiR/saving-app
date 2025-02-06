@@ -1,0 +1,134 @@
+.container {
+    max-width: 402px;
+    height: 100vh;
+    color: #333;
+    background-color: #f1f1f1;
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    box-sizing: border-box;
+
+    .header {
+        width: 100%;
+        text-align: center;
+
+        .year {
+            font-size: 1.25rem;
+        }
+
+        .month {
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .monthTotal {
+            font-size: 1.5rem;
+            margin-top: 5px;
+        }
+    }
+}
+
+.calendarContainer {
+    width: 90%;
+    height: 320px;
+    background-color: #fff;
+    margin: 0 auto;
+    margin-top: 25px;
+    border-radius: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.calendarTable {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+
+    .calendarHeader {
+        color: #ff7b00;
+    }
+
+    th,
+    td {
+        font-size: 1.125rem;
+        text-align: center;
+        padding: 5px;
+        border: none;
+        position: relative;
+        overflow: hidden;
+    }
+
+    thead tr,
+    tbody tr {
+        height: calc(100% / 7);
+    }
+}
+
+.today {
+    background-color: #ff7b00;
+    color: #fff;
+    border-radius: 50%;
+    display: inline-block;
+    width: 2em;
+    height: 2em;
+    line-height: 2em;
+}
+
+.savingDot {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #ff7b00;
+}
+
+.savingDetail {
+    width: 90%;
+    margin: 20px auto 0;
+    padding: 20px 10px;
+    background-color: #fff;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.savingRow {
+    width: 100%;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.addAmount {
+    color: #ff7b00;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.chosenRoom {
+    font-size: 1rem;
+}
+
+.savingDetail p {
+    font-size: 1rem;
+}
+
+.navbar {
+    max-width: 402px;
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    height: 80px;
+    background: #ff7b00;
+    border-radius: 20px 20px 0 0;
+}

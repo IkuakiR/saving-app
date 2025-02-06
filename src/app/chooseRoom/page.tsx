@@ -11,6 +11,8 @@ import { doc, updateDoc, increment } from "firebase/firestore";
 import { db } from "@/app/Firebase/firebase";
 import { useEffect } from "react";
 
+
+
 interface Room {
     roomName: string;
     category: string;
@@ -34,6 +36,7 @@ export default function ChooseRoom() {
 
     const handleChooseRoom = async (roomName: string) => {
         const amount = searchParams.get('amount') || '';
+        const savingId = searchParams.get('savingId') || '';
 
         try {
             const roomQuery = query(collection(db, "rooms"), where("roomName", "==", roomName));
@@ -50,6 +53,13 @@ export default function ChooseRoom() {
             await updateDoc(roomDocRef, {
                 currentAmount: increment(Number(amount)),
             });
+
+            if (savingId) {
+                const savingDocRef = doc(db, "savings", savingId);
+                await updateDoc(savingDocRef, {
+                    roomName: roomName
+                });
+            }
 
             setAmount(amount);
             setRoomName(roomName);

@@ -33,7 +33,7 @@ export default function Home() {
       await setDoc(docRef, {
         amount: Number(displayValue),
         createdAt: new Date(),
-        roomName: "", // roomNameは後で更新
+        roomName: "", 
       });
       console.log("Document written with ID: ", docRef.id);
       alert("貯金しました");
@@ -49,7 +49,7 @@ export default function Home() {
           <Image src={'/images/wallet.svg'} alt="Wallet" width={50} height={50} className={styles.walletImg} />
           <div className={styles.numHolder}>{displayValue}</div>
           <button className={styles.savingButton} onClick={handleSave}>
-            <Link href={`/chooseRoom?amount=${displayValue}`}>貯金する</Link>
+            <Link href={`/chooseRoom?amount=${displayValue}&savingId=${displayValue}`}>貯金する</Link>
           </button>
         </div>
         <table className={styles.numberKeys}>
